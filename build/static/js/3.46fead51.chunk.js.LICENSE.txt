@@ -1,0 +1,5 @@
+/*!
+ * calendar.js: inspired by the calendar module from Python
+ * Copyright(c) 2011 Luciano Ramalho <luciano@ramalho.org>
+ * MIT Licensed
+ */
