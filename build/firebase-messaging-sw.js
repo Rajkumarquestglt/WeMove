@@ -13,9 +13,31 @@ firebase.initializeApp({
   messagingSenderId: '1081950831698',
 });
 
-firebase.messaging().onBackgroundMessage(payload => {
-  console.log('payload', payload);
+const messaging = firebase.messaging();
+
+messaging.onBackgroundMessage(payload => {
+  console.log(payload);
+  const { title, message, icon } = payload.data;
+  new Notification(title, {
+    message,
+    icon,
+  }).onclick = event => {
+    event.preventDefault();
+    window.location = payload.notification.click_action;
+  };
 });
+
+// Old Code
+// firebase.initializeApp({
+//   apiKey: 'AIzaSyD6M4Qgp4QzRf1PMYCsOTpDuVYSm0GAFbU',
+//   appId: '1:1081950831698:web:0ff6ad89d040347363cb8b',
+//   projectId: 'wetaxi-marketplace',
+//   messagingSenderId: '1081950831698',
+// });
+
+// firebase.messaging().onBackgroundMessage(payload => {
+//   console.log('payload', payload);
+// });
 
 // firebase.messaging().setBackgroundMessageHandler(payload => {
 //   console.log("payload", payload)
